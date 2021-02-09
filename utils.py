@@ -3,7 +3,16 @@
 # Author: Sébastien Combéfis
 # Version: February 8, 2018
 
+import cmath
+
 def fact(n):
+	if n == 0:
+		return 1
+	else:
+		F = 1
+		for k in range (2, n+1):
+			F = F*k
+		return F
 	"""Computes the factorial of a natural number.
 	
 	Pre: -
@@ -13,6 +22,11 @@ def fact(n):
 	pass
 
 def roots(a, b, c):
+	d = (b**2) - (4*a*c)
+	sol1 = (-b-cmath.sqrt(d))/(2*a)
+	sol2 = (-b+cmath.sqrt(d))/(2*a)
+	print('The solution are {0} and {1}'.format(sol1,sol2))
+
 	"""Computes the roots of the ax^2 + bx + x = 0 polynomial.
 	
 	Pre: -
@@ -40,3 +54,17 @@ if __name__ == '__main__':
 	print(fact(5))
 	print(roots(1, 0, 1))
 	print(integrate('x ** 2 - 1', -1, 1))
+
+
+import unittest
+import utils
+class Test(unittest.TestCase):
+	def test_compute ( self ):
+		self . assertEqual (utils.fact(5) , 5)
+		
+suite = unittest . TestLoader () . loadTestsFromTestCase ( Test )
+runner = unittest . TextTestRunner ()
+print ( runner . run( suite ))
+
+
+		
